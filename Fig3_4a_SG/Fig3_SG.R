@@ -61,7 +61,7 @@ mydata=data.frame(AgeGrp, Age,SG, Site,  SiteAgeGrp)
 
 
 tiff(filename="SG.age.boxplot.tiff", width=1200, height=1600,res=300)  
-p1<-ggplot(mydata, aes(x=AgeGrp, y=SG, color=AgeGrp), alpha=0.02) +geom_boxplot(color="black")+geom_jitter(position=position_jitter(0.2))+theme_bw()+geom_smooth(data=mydata,aes(x = AgeGrp, y = SG, group=1), color="orange", alpha=0.4, level=0.95, size = 0.8, method = "loess", span = 1) +ggtitle("SG Area vs. Age Group")+ labs(x = "Age Group", y="sebaceous gland (SG) area measurements (square um)" )
+p1<-ggplot(mydata, aes(x=AgeGrp, y=SG, color=AgeGrp), alpha=0.02) +geom_boxplot(color="black")+geom_jitter(position=position_jitter(0.2))+theme_bw()+geom_smooth(data=mydata,aes(x = AgeGrp, y = SG, group=1), color="orange", alpha=0.4, level=0.95, size = 0.8, method = "loess", span = 1) +ggtitle("SG Area vs. Age Group")+ labs(x = "", y="Sebaceous gland (SG) area measurements (square um)" )+ theme(legend.position = "none") 
 print(p1)
 dev.off()
 	
