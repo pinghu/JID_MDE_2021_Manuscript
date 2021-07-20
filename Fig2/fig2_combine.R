@@ -31,10 +31,11 @@ newsum2<-rbind(newsum, Other)
 rownames(newsum2)[14]="Other"
 
 testdata<-as.data.frame(as.table(as.matrix(newsum2)))
-colnames(testdata)=c("Genus", "Group", "RelativeAbundance")
+colnames(testdata)=c("Genus", "Group", "Relative Abundance")
 #p2A<-ggplot()+ geom_bar(aes(y = RelativeAbundance, x = Group, fill = Genus), data = testdata,stat="identity")+scale_fill_manual(values=cols)+theme(legend.position="bottom", legend.direction="horizontal")+coord_flip()
-p2A<-ggplot()+ geom_bar(aes(y = RelativeAbundance, x = Group, fill = Genus), data = testdata,stat="identity")+scale_fill_manual(values=cols)+theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))
-
+p2A<-ggplot()+ geom_bar(aes(y = RelativeAbundance, x = Group, fill = Genus), data = testdata,stat="identity")+scale_fill_manual(values=cols)+theme(text = element_text(size=20),axis.text.x=element_text(angle=90,hjust=1,vjust=0.5))+ xlab("")
+#theme(text = element_text(size=20),
+#      axis.text.x = element_text(angle=90, hjust=1)) 
 #print(p2A)
 ##########################http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/76-add-p-values-and-significance-levels-to-ggplots/###
 ####http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/78-perfect-scatter-plots-with-correlation-and-marginal-histograms/####
@@ -50,8 +51,11 @@ get_fig <- function(number) {
   LLL=length(splitG[[1]])
   genus=splitG[[1]][LLL]
   mydata=data.frame(gene,gene0, AgeGrp, Age, Site, SID, Order, SiteAgeGrp)
-  p<-ggplot(mydata, aes(x=AgeGrp, y=gene, color=Site)) +geom_boxplot(color="black")+geom_jitter(position=position_jitter(0.2))+theme_bw()+facet_grid( . ~ Site)+geom_smooth(data=mydata,aes(x = AgeGrp, y = gene, group=1),method = "loess") +ggtitle(paste0(genus, " log10  relative Abundance"))+ylab(paste0(genus," log10 relative abundance"))+ theme(legend.position = "none")
-  return(p)
+ 
+  # p<-ggplot(mydata, aes(x=AgeGrp, y=gene, color=Site)) +geom_boxplot(color="black")+geom_jitter(position=position_jitter(0.2))+theme_bw()+facet_grid( . ~ Site)+geom_smooth(data=mydata,aes(x = AgeGrp, y = gene, group=1),method = "loess") +ggtitle(paste0(genus, " log10  relative Abundance"))+ylab(paste0(genus," log10 relative abundance"))+ theme(legend.position = "none")
+  p<-ggplot(mydata, aes(x=AgeGrp, y=gene, color=Site)) +geom_boxplot(color="black")+geom_jitter(position=position_jitter(0.2))+theme_bw()+facet_grid( . ~ Site)+geom_smooth(data=mydata,aes(x = AgeGrp, y = gene, group=1),method = "loess") +ggtitle(paste0(genus, " log10  relative Abundance"))+ylab("log10 relative abundance")+ theme(legend.position = "none")+xlab("")
+  
+    return(p)
 }
 
 A<-read.table(filename, sep="\t", header=TRUE)
