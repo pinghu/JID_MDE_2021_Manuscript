@@ -51,6 +51,6 @@ round(res, 2)
 #         tl.col = "black", tl.srt = 45)
 
 
-tiff(filename = paste0(outname,".Cor4.tiff"), width = 2660, height = 2660, res=300)
+tiff(filename = paste0("Fig4a.tiff"), width = 2660, height = 2660, res=300)
 corrplot.mixed(rCOR$r, p.mat=rCOR$P, sig.level=0.05, diag='u', insig = "blank",  order="hclust", upper = "ellipse", lower.col = "black", tl.pos="lt")
 dev.off()
